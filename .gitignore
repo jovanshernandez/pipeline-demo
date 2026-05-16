@@ -1,6 +1,14 @@
 # Local .terraform directories
 **/.terraform/*
 
+# Local Python verification artifacts
+.venv/
+**/.venv/
+.pytest_cache/
+**/.pytest_cache/
+__pycache__/
+**/__pycache__/
+
 # .tfstate files
 *.tfstate
 *.tfstate.*

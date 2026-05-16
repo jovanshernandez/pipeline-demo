@@ -1,23 +1,30 @@
 ---
 
-- name: Configure Jenkins Playbook
+- name: Configure Jenkins controller
   hosts: jenkins
+  become: yes
   tasks:
 
-  - name: Install Java Requirements
-    apt: 
+  - name: Install Java requirements
+    apt:
       update_cache: yes
       name: default-jdk
-    become: yes
 
-  - name: Install Jenkins
+  - name: Add Jenkins apt repository
     shell: |
       wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
       sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
         /etc/apt/sources.list.d/jenkins.list'
-      sudo apt-get update -y
-      sudo apt-get install jenkins -y
+    args:
+      creates: /etc/apt/sources.list.d/jenkins.list
 
-  - name: Run Jenkins
-    shell: /etc/init.d/jenkins start
-    become: yes
+  - name: Install Jenkins
+    apt:
+      update_cache: yes
+      name: jenkins
+
+  - name: Enable and start Jenkins
+    service:
+      name: jenkins
+      state: started
+      enabled: yes
