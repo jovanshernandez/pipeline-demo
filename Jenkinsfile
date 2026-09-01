@@ -29,6 +29,12 @@ pipeline {
       }
     }
 
+    stage('Validate Kubernetes manifests') {
+      steps {
+        sh 'kubectl kustomize k8s/overlays/local'
+      }
+    }
+
     stage('Validate Terraform') {
       parallel {
         stage('Jenkins stack') {
