@@ -105,7 +105,3 @@ The Jenkinsfile is written as a portfolio-friendly delivery pipeline:
 - EC2 metadata requires IMDSv2
 - Root volumes are encrypted by default
 - AWS profile names are variables, not hard-coded personal workstation values
-
-## Resume Positioning
-
-Use this project on the Platform Engineer resume as a concise delivery-platform example: tests, image build, Kubernetes manifest validation, Terraform validation, Ansible validation, and runtime health/readiness checks. It can support the SRE resume, but `market-risk-platform` is the stronger reliability-facing project.
